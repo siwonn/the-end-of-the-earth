@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>end of the earth</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com"> 
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+	<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+	<style type="text/css">
+		html{font-family: 'Black Han Sans', sans-serif;}
+		body{
+			background-image: url(earth.png);
+			background-repeat: no-repeat;
+			height: 100vh;
+     		background-size : cover;
+			}
+        .header{
+        	margin-left: 80px; margin-top: 150px; margin-bottom: 100px;
+        }
+       .box{width: 80px; height: 80px; position:  absolute;content: url(bomb.png);}
+
+       #tm{ position: absolute; left: 50%; transform: translateX(-50%);font-size: 4em; display: flex; color: white;
+       	-webkit-user-select: none;}
+	</style>
+</head>
+<body>
+	<div class="header">
+		<div id="title" style="font-size: 100px; color: white; text-align: center;">지구 종말까지</div>
+		<div id="tm"></div>
+	</div>
+
+	<script type="text/javascript">
+		
+		makeBox();
+		function makeBox(){
+			var a = document.createElement("div");
+			a.id = "sqaure";
+			a.className = "box";
+			var b = Math.random()*window.innerWidth;
+			var c = Math.random()*window.innerHeight;
+			a.style.left = b + "px";
+			a.style.top = c + "px";
+			a.onclick = function(){
+				a.parentNode.removeChild(a);
+				makeBox();
+			}
+			document.body.appendChild(a);
+		}
+
+		 
+        var time = 60;
+        var min = "1"
+        var sec = "60"
+
+        var x = setInterval(function () {
+            min = parseInt(time / 60);
+            sec = time % 60;
+
+            document.getElementById("tm").innerHTML = min + ":" + sec; time--;
+
+            if (time < 0) {
+                clearInterval(x);
+                document.getElementById("tm").innerHTML = "------";
+            }
+
+        }, 1000);
+	</script>
+
+</body>
+</html>
